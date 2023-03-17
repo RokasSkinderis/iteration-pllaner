@@ -1,0 +1,1 @@
+export const flexCenterStyle = {display: 'flex', justifyContent: 'center', alignItems: 'center'}
