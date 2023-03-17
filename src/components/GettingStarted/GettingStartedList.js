@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import Container from "@mui/material/Container";
-import List from "@mui/material/List";
 import Paper from "@mui/material/Paper";
 import WorkspacesIcon from "@mui/icons-material/Workspaces";
 import GroupsIcon from "@mui/icons-material/Groups";
@@ -14,29 +13,11 @@ import useFetch, {HttpRequestMethods} from "@/hooks/useFetch";
 import GettingStartedTable from "@/components/GettingStarted/GettingStartedTable/GettingStartedTable";
 import GettingStartedListItem from "@/components/GettingStarted/GettingStartedListItem";
 import CreateDeveloperDialog from "@/components/GettingStarted/CrudDialogs/CreateDeveloperDialog";
-
-
-const GettingStartedListItems = {
-    TEAMS: 'Teams',
-    DEVELOPERS: 'Developers',
-    ITERATIONS: 'Iterations',
-}
-
-const TeamsTableOrder = [
-    {title: '', key: 'chevron'},
-    {title: 'Name', key: 'name'},
-    {title: 'Scrum Master', key: 'scrumMaster'},
-    {title: 'Date Created', key: 'dateCreated'},
-    {title: 'Actions', key: 'actions'},
-]
-
-const DevelopersTableOrder = [
-    {title: 'Name', key: 'name'},
-    {title: 'Domain', key: 'domain'},
-    {title: 'Based In', key: 'basedIn'},
-    {title: 'Date Created', key: 'dateCreated'},
-    {title: 'Actions', key: 'actions'},
-]
+import {
+    DevelopersTableOrder,
+    GettingStartedListItems,
+    TeamsTableOrder
+} from "@/components/GettingStarted/gettingStartedConstants";
 
 const GettingStartedList = () => {
     const [isAddTeamDialogOpen, setIsAddTeamDialogOpen] = useState(false);
@@ -150,32 +131,30 @@ const GettingStartedList = () => {
         }
     }
 
-    return <Container sx={{display: 'flex', alignItems: 'flex-start'}}>
-        <Paper sx={{mr: 2}}>
-            <Box sx={{width: '100%', maxWidth: 360}}>
-                <nav>
-                    <List disablePadding>
-                        <GettingStartedListItem
-                            divider={true}
-                            icon={<GroupsIcon/>}
-                            text={GettingStartedListItems.TEAMS}
-                            onClick={setActiveListItem}
-                            isActive={isTeamsActive}
-                        />
-                        <GettingStartedListItem
-                            divider={true}
-                            icon={<PersonIcon/>}
-                            text={GettingStartedListItems.DEVELOPERS}
-                            onClick={setActiveListItem}
-                            isActive={isDevelopersActive}
-                        />
-                        <GettingStartedListItem
-                            icon={<WorkspacesIcon/>}
-                            text={GettingStartedListItems.ITERATIONS}
-                            onClick={setActiveListItem}
-                            isActive={isIterationsActive}
-                        />
-                    </List>
+    return <Container sx={{display: 'flex', alignItems: 'flex-start', flexDirection: "column"}}>
+        <Paper sx={{mb: 2}}>
+            <Box sx={{width: '100%'}}>
+                <nav style={{display: 'flex'}}>
+                    <GettingStartedListItem
+                        divider={true}
+                        icon={<GroupsIcon/>}
+                        text={GettingStartedListItems.TEAMS}
+                        onClick={setActiveListItem}
+                        isActive={isTeamsActive}
+                    />
+                    <GettingStartedListItem
+                        divider={true}
+                        icon={<PersonIcon/>}
+                        text={GettingStartedListItems.DEVELOPERS}
+                        onClick={setActiveListItem}
+                        isActive={isDevelopersActive}
+                    />
+                    <GettingStartedListItem
+                        icon={<WorkspacesIcon/>}
+                        text={GettingStartedListItems.ITERATIONS}
+                        onClick={setActiveListItem}
+                        isActive={isIterationsActive}
+                    />
                 </nav>
             </Box>
         </Paper>
